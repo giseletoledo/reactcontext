@@ -11,11 +11,19 @@ function TodosList() {
 
   const [todos, setTodos] = useState(initialTodos);
 
+  function deleteHandler(id) {
+    if (confirm('Are you sure you want to delete the todo?')) {
+      setTodos(todos.filter(todo => todo.id !== id))    
+    }
+  }
+
   return (
     <>
         <div className="todos">
           {todos.map(todo => 
             <Todo
+              deleteTodo={(id) => deleteHandler(id)}
+              toggleIsDone={(id) => toggleIsDoneHandler(id)}
               todo={todo}
               key={todo.id}
             />
