@@ -13,8 +13,19 @@ function TodosList() {
 
   function deleteHandler(id) {
     if (confirm('Are you sure you want to delete the todo?')) {
-      setTodos(todos.filter(todo => todo.id !== id))    
+      setTodos(todos.filter(todo => todo.id !== id));    
     }
+  }
+
+  function toggleIsDoneHandler(id) {
+    setTodos(todos.map(todo => {
+      if (todo.id === id) {
+        todo.isDone = !todo.isDone;
+        return todo;
+      } else {
+        return todo;
+      }    
+    }));
   }
 
   return (
