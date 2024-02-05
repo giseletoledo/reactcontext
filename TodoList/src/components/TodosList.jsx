@@ -1,6 +1,6 @@
-import Todo from './Todo.jsx';
 import { useContext } from "react";
 import { TodosContext } from "../TodosContext.js";
+import Todo from './Todo.jsx';
 
 
 function TodosList() {
@@ -8,9 +8,10 @@ function TodosList() {
   const store = useContext(TodosContext);
 
   function deleteHandler(id) {
-    if (confirm('Are you sure you want to delete the todo?')) {
-      store.setTodos(todos.filter(todo => todo.id !== id));    
-    }
+      store.dispatch({
+        type: 'deleted',
+        id: id
+      });    
   }
 
   function toggleIsDoneHandler(id) {
